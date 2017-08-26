@@ -24,6 +24,6 @@ pip-log.txt
 *.mo
 
 #Mr Developer
-venv
+env/
 *.pyc
 build
