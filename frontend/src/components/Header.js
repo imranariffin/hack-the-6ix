@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const btnStyle = {
+	margin: '10px',
+};
 
 class Header extends Component {
 	constructor(props) {
@@ -11,15 +18,22 @@ class Header extends Component {
 	render() {
 
 		const LogoutButton = this.props.authenticated() 
-			? (<Link to='#' onClick={this.logout}>Logout</Link>) 
+			? (<Link to='#' onClick={this.logout}>
+					<RaisedButton style={btnStyle} primary={true} label="Logout" />
+				</Link>) 
 			: null;
 
 		return (
-			<div>
-				<Link to='/' >Home</Link>
-				{ LogoutButton }
-				<hr/>
-			</div>
+			<MuiThemeProvider>
+				<Toolbar>
+					<ToolbarGroup>
+						<Link to='/' >
+							<RaisedButton style={btnStyle} primary={true} label="Home" />
+						</Link>
+						{ LogoutButton }
+					</ToolbarGroup>
+				</Toolbar>
+			</MuiThemeProvider>
 		);
 	}
 
